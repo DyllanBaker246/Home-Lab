@@ -1,0 +1,6 @@
+Version Control
+*****************************************
+1.0.1 - 10/29/26
+    - Installed uptime kuma on rbpi, using to track up/down state of devices
+    - set up kali linux vm on proxmox server
+    - Still need to configure ssh on kali, Ill do that tm
