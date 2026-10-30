@@ -1,5 +1,9 @@
 Version Control
 *****************************************
+1.0.2 - 10/29/26
+    - Set up an Ubuntu Server to run GLPI
+    - set up a few basic tickets for future projects
+    - made updates to readme
 1.0.1 - 10/29/26
     - Installed uptime kuma on rbpi, using to track up/down state of devices
     - set up kali linux vm on proxmox server

@@ -45,12 +45,12 @@ A personal home lab for learning enterprise networking, infrastructure administr
 | Home LAN | `192.168.1.0/24` | Existing | Outside lab |
 | Lab LAN | `192.168.137.0/24` | Existing | Cisco-side subnet |
 | Cisco router LAN | `192.168.137.1` | **Verify** | Assumed gateway |
-| Proxmox host | `192.168.137.4` | **Verify** | Management UI typically on port 8006 |
-| Raspberry Pi | `192.168.137.120` | DHCP (observed) | Reserve this address if desired |
-| Kali Linux VM | `192.168.137.10` | Planned static | Confirm unused and outside DHCP pool |
+| Proxmox host | `192.168.137.4` | **Verify** | Management UI on port 8006 |
+| Raspberry Pi | `192.168.137.120` | Static IP6 | Reserve this address if desired |
+| Kali Linux VM | `192.168.137.5` | Planned static | Confirm unused and outside DHCP pool |
+| Ubuntu Server GLPI | `192.168.137.6` | Static IP | Used to run GLPI AD ticket web app, accessed on port 8080 |
 | Cisco switch management | TBD | TBD | Only if management IP configured |
-| Linux desktop | TBD | TBD | |
-| Docker default bridge | `172.17.0.0/16` | Docker-managed | Container-internal networking |
+| Linux Laptop | TBD | TBD | |
 | Isolated pentest segment | TBD | Planned | No route to home LAN |
 
 **Addressing rules:** Verify the router's DHCP pool before choosing static IPs. Prefer DHCP reservations for infrastructure when possible. Record all assignments and changes here.
