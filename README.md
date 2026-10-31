@@ -47,8 +47,9 @@ A personal home lab for learning enterprise networking, infrastructure administr
 | Cisco router LAN | `192.168.137.1` | **Verify** | Assumed gateway |
 | Proxmox host | `192.168.137.4` | **Verify** | Management UI on port 8006 |
 | Raspberry Pi | `192.168.137.120` | Static IP6 | Reserve this address if desired |
-| Kali Linux VM | `192.168.137.5` | Planned static | Confirm unused and outside DHCP pool |
+| Kali Linux VM | `192.168.137.5, 10.10.10.2 (isolated network)` | Static IP | Confirm unused and outside DHCP pool |
 | Ubuntu Server GLPI | `192.168.137.6` | Static IP | Used to run GLPI AD ticket web app, accessed on port 8080 |
+| Metasploitable 2 | `10.10.10.1` | Static IP | Intentionally vulnerable machine for pentesting (isolated from main network) |
 | Cisco switch management | TBD | TBD | Only if management IP configured |
 | Linux Laptop | TBD | TBD | |
 | Isolated pentest segment | TBD | Planned | No route to home LAN |
@@ -262,19 +263,6 @@ For significant changes, create an entry in `docs/change-log.md` with:
 | 2026-10-28 | Raspberry Pi | Deployed Uptime Kuma with Docker | Working on host port 3002 |
 | 2026-10-28 | ntopng / Docker | Identified host-port conflict on 3001 | Separated service ports |
 | 2026-10-28 | ntopng | Confirmed HTTPS listener on port 3001 | Responds with login redirect |
-
-## Roadmap
-
-- [ ] Verify and document all physical port connections.
-- [ ] Confirm DHCP scope, default gateway, and static IP reservations.
-- [ ] Finalize Kali VM deployment and static IP configuration.
-- [ ] Build an isolated network for vulnerable testing VMs.
-- [ ] Set up regular Proxmox and Raspberry Pi backups.
-- [ ] Configure Uptime Kuma notifications.
-- [ ] Create network and service diagrams.
-- [ ] Document VLANs, ACLs, and switch SPAN configuration.
-- [ ] Test reboot recovery for ntopng and Uptime Kuma.
-- [ ] Add DNS names for internal services.
 
 ## Suggested repository structure
 
