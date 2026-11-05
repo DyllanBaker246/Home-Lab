@@ -1,6 +1,6 @@
 # Home Lab Infrastructure
 
-> **Version:** 1.5.0  
+> **Version:** 1.5.1  
 > **Focus:** Networking, cybersecurity, Linux administration, virtualization, and monitoring  
 > **Lab subnet:** `192.168.137.0/24`
 
@@ -162,6 +162,7 @@ Store at least one backup outside the Proxmox host and Raspberry Pi. Record actu
 
 | Version | Date | Change |
 |---------|------------|--------------------------------|
+| 1.5.1 | 2026-11-05 | Configured DNS Records |
 | 1.5.0 | 2026-11-04 | Configured Wazuh and DNS Server |
 | 1.4.0 | 2026-11-02 | Configured Tailscale |
 | 1.3.0 | 2026-10-30 | Set up Metasploit VM |

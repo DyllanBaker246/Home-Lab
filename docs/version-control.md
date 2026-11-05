@@ -16,13 +16,13 @@ For a summarized version history, see the README.md.
 | X.Y.Z | Patch | Minor configuration adjustments, bug fixes, security patches, and routine maintenance. | Updating firewall rules, fixing DNS, updating packages |
 
 ---
-## Version 1.X.X — Current
+## Version 1.5.1 — Configuring DNS Records
 
-**Date:**  
+**Date:** 2026-11-5
 
-**Version:** 
+**Version:** 1.5.1
 
-**Change Type:** Installation / Configuration / Update / Maintenance / Security / Bug Fix 
+**Change Type:** Configuration
 
 **Status:** In Progress
 
@@ -31,15 +31,18 @@ For a summarized version history, see the README.md.
 
 | Component | Hostname | IP Address |
 |-----------|----------|------------|
-
+| DNS-Server | dns-server | `192.168.137.9` |
 
 ### Changes Made
 
-1. 
+1. Configured proxmox.homelab -> 192.168.137.4
+2. Configured kuma.homelab -> 192.168.137.120
+3. Configured wazuh.homelab -> 192.168.137.8
+    - This one doesnt work and I dont know why
 
 ### Notes
 
-- 
+- Next I want to set up a reverse proxy to handle the port numbers
 
 ---
 ## Version 1.5.0 — Wazuh and Pihole
