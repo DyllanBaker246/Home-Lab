@@ -45,14 +45,16 @@ A personal home lab for learning enterprise networking, infrastructure administr
 | Home LAN | `192.168.1.0/24` | Existing | Outside lab |
 | Lab LAN | `192.168.137.0/24` | Existing | Cisco-side subnet |
 | Cisco router LAN | `192.168.137.1` | **Verify** | Assumed gateway |
-| Proxmox host | `192.168.137.4` | **Verify** | Management UI on port 8006 |
-| Raspberry Pi | `192.168.137.120` | Static IP6 | Reserve this address if desired |
+| Cisco switch management | `192.168.137.2 (PLANNED)` | Static | for SSH |
+| Proxmox host | `192.168.137.4` | Static IP | Management UI on port 8006 |
 | Kali Linux VM | `192.168.137.5, 10.10.10.2 (isolated network)` | Static IP | Confirm unused and outside DHCP pool |
 | Ubuntu Server GLPI | `192.168.137.6` | Static IP | Used to run GLPI AD ticket web app, accessed on port 8080 |
+| Ubuntu Server Tailscale | `192.168.137.7` | Static IP | Remote connection |
+| Wazuh Siem Server | `192.168.137.8` | Static IP | |
+| DNS Server | `192.168.137.9` | Static IP | |
+| Raspberry Pi | `192.168.137.120` | Static IP | Reserve this address if desired |
 | Metasploitable 2 | `10.10.10.1` | Static IP | Intentionally vulnerable machine for pentesting (isolated from main network) |
-| Cisco switch management | TBD | TBD | Only if management IP configured |
-| Linux Laptop | TBD | TBD | |
-| Isolated pentest segment | TBD | Planned | No route to home LAN |
+| Linux Laptop | | DHCP | |
 
 **Addressing rules:** Verify the router's DHCP pool before choosing static IPs. Prefer DHCP reservations for infrastructure when possible. Record all assignments and changes here.
 
@@ -75,71 +77,6 @@ A personal home lab for learning enterprise networking, infrastructure administr
 | TBD | Raspberry Pi | TBD | Monitoring |
 | TBD | Linux desktop | TBD | Workstation |
 | TBD | SPAN destination | TBD | If configured for traffic capture |
-
-## Infrastructure services
-
-### Proxmox VE
-
-- **Management URL:** `https://192.168.137.4:8006` (verify address)
-- **Bridge:** `vmbr0` (verify physical NIC membership)
-- **VM connectivity:** Bridged onto lab LAN; no Proxmox NAT
-- **Backups:** TBD (configure scheduled VM backups; snapshots alone are not backups)
-
-| VM | Intended address | Purpose | State |
-|---|---|---|---|
-| Kali Linux | `192.168.137.10` | Penetration testing | Installation / address to verify |
-| Metasploitable | TBD | Vulnerable practice target | Planned |
-| Ubuntu Server | TBD | General-purpose services | Planned |
-
-**Safety:** Keep deliberately vulnerable guests on an isolated Proxmox bridge or VLAN, not on the ordinary lab LAN. Restrict routing to home and public networks as needed.
-
-### Raspberry Pi: Uptime Kuma
-
-- **Dashboard:** `http://192.168.137.120:3002`
-- **Deployment:** Docker
-- **Image:** `louislam/uptime-kuma:2`
-- **Persistent volume:** `uptime-kuma`
-- **Container port:** `3001`; **host port:** `3002`
-- **Startup:** Docker `unless-stopped` restart policy
-
-```bash
-sudo docker ps
-sudo docker logs --tail 50 uptime-kuma
-sudo docker restart uptime-kuma
-sudo docker inspect uptime-kuma --format '{{.HostConfig.RestartPolicy.Name}}'
-```
-
-To recreate the container using the existing named data volume:
-
-```bash
-sudo docker run -d \
-  --restart=unless-stopped \
-  -p 3002:3001 \
-  -v uptime-kuma:/app/data \
-  --name uptime-kuma \
-  louislam/uptime-kuma:2
-```
-
-> Stop and remove the existing container before recreating it. **Do not delete the `uptime-kuma` volume** unless intentionally wiping the data. Back up the volume before upgrades.
-
-Use ping monitors for reachable devices and HTTPS monitors for web services. Create manual maintenance windows for VMs intentionally powered off.
-
-### Raspberry Pi: ntopng
-
-- **Dashboard:** `https://192.168.137.120:3001`
-- **Deployment:** Native systemd service
-- **Transport:** HTTPS with a locally generated/self-signed certificate
-- **Startup:** `ntopng.service` enabled
-- **Purpose:** Traffic analysis and visibility
-
-```bash
-sudo systemctl status ntopng
-sudo systemctl enable --now ntopng
-sudo journalctl -u ntopng -n 50 --no-pager
-sudo ss -lntp | grep ntopng
-```
-
-**Important:** ntopng listens on **HTTPS port 3001**, while Uptime Kuma uses **HTTP port 3002**. An earlier conflict occurred when both tried to bind host port 3001. Do not publish Kuma on host port 3001 while ntopng uses it.
 
 ### Service inventory
 
@@ -260,11 +197,9 @@ For significant changes, create an entry in `docs/change-log.md` with:
 
 | Date | Component | Change | Result |
 |---|---|---|---|
-| 2026-10-28 | Raspberry Pi | Deployed Uptime Kuma with Docker | Working on host port 3002 |
-| 2026-10-28 | ntopng / Docker | Identified host-port conflict on 3001 | Separated service ports |
-| 2026-10-28 | ntopng | Confirmed HTTPS listener on port 3001 | Responds with login redirect |
+| 2026-11-4 | Proxmox: dns-server | deployed ubuntu-server VM to run pihole | Pihole is installed, need to add configs to router |
 
-## Suggested repository structure
+## Repository Structure
 
 ```text
 home-lab/
