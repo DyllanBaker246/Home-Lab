@@ -1,6 +1,6 @@
 # Home Lab Infrastructure
 
-> **Status:** Active development  
+> **Version:** 1.5.0  
 > **Focus:** Networking, cybersecurity, Linux administration, virtualization, and monitoring  
 > **Lab subnet:** `192.168.137.0/24`
 
@@ -16,27 +16,7 @@ A personal home lab for learning enterprise networking, infrastructure administr
 
 ## Network topology
 
-```text
-                    Internet
-                       |
-              Home router / LAN
-                192.168.1.0/24
-                       |
-                 Cisco router
-              NAT / routing / DHCP
-                       |
-                 Cisco switch
-                192.168.137.0/24
-                 /      |      \
-                /       |       \
-       Proxmox host  Raspberry Pi  Linux desktop
-          vmbr0        monitoring
-            |          /       \
-         Kali VM   Uptime Kuma   ntopng
-         Other VMs   Docker       systemd
-```
-
-> **Note:** The diagram is logical, not a verified physical port map. Proxmox guests use a bridge to join the lab LAN directly; no additional NAT is needed on Proxmox. The Cisco router still provides NAT upstream.
+![Alt text](diagrams/homelab_1-5-0.png)
 
 ## Addressing plan
 
@@ -178,26 +158,16 @@ curl -I http://127.0.0.1:3002/
 
 Store at least one backup outside the Proxmox host and Raspberry Pi. Record actual recovery steps once tested.
 
-## Change management
+### Change Log (Summary)
 
-For significant changes, create an entry in `docs/change-log.md` with:
+| Version | Date | Change |
+|---------|------------|--------------------------------|
+| 1.5.0 | 2026-11-04 | Configured Wazuh and DNS Server |
+| 1.4.0 | 2026-11-02 | Configured Tailscale |
+| 1.3.0 | 2026-10-30 | Set up Metasploit VM |
+| 1.2.0 | 2026-10-29 | Configured GLPI Server |
+| 1.1.0 | 2026-10-29 | Set up Uptime Kuma |
 
-| Field | Description |
-|---|---|
-| Date | When the change occurred |
-| Device / service | Affected system |
-| Reason | Why the change was needed |
-| Before | Prior configuration or behavior |
-| Change | Commands and settings modified |
-| Verification | Tests performed and results |
-| Rollback | How to reverse the change |
-| Outcome | Success, partial success, or follow-up needed |
-
-### Change log (summary)
-
-| Date | Component | Change | Result |
-|---|---|---|---|
-| 2026-11-4 | Proxmox: dns-server | deployed ubuntu-server VM to run pihole | Pihole is installed, need to add configs to router |
 
 ## Repository Structure
 

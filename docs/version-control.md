@@ -16,12 +16,42 @@ For a summarized version history, see the README.md.
 | X.Y.Z | Patch | Minor configuration adjustments, bug fixes, security patches, and routine maintenance. | Updating firewall rules, fixing DNS, updating packages |
 
 ---
+## Version 1.X.X — Current
+
+**Date:**  
+
+**Version:** 
+
+**Change Type:** Installation / Configuration / Update / Maintenance / Security / Bug Fix 
+
+**Status:** In Progress
+
+
+### Components Affected
+
+| Component | Hostname | IP Address |
+|-----------|----------|------------|
+
+
+### Changes Made
+
+1. 
+
+### Notes
+
+- 
+
+---
 ## Version 1.5.0 — Wazuh and Pihole
 
 **Date:**  2026-11-4
+
 **Version:** 1.5.0
-**Change Type:** Installation and Configuration 
+
+**Change Type:** Installation and Configuration
+
 **Status:** Completed
+
 
 ### Components Affected
 
@@ -50,8 +80,11 @@ For a summarized version history, see the README.md.
 ## Version 1.4.0 — Tailscale
 
 **Date:**  2026-11-2
+
 **Version:** 1.4.0
+
 **Change Type:** Installation and Configuration
+
 **Status:** Completed
 
 ### Components Affected
@@ -76,8 +109,11 @@ For a summarized version history, see the README.md.
 ## Version 1.3.0 — Metasploit
 
 **Date:** 2026-10-30 
+
 **Version:** 1.3.0
+
 **Change Type:** Installation 
+
 **Status:** Completed 
 
 ### Components Affected
@@ -102,8 +138,11 @@ For a summarized version history, see the README.md.
 ## Version 1.2.0 — GLPI Server
 
 **Date:** 2026-10-29
+
 **Version:** 1.2.0
+
 **Change Type:** Installation
+
 **Status:** Completed
 
 ### Components Affected
@@ -127,8 +166,11 @@ For a summarized version history, see the README.md.
 ## Version 1.1.0 — Uptime Kuma, Kali Linux
 
 **Date:** 2026-10-29 
+
 **Version:** 1.1.0
+
 **Change Type:** Installation
+
 **Status:** Completed
 
 ### Components Affected
@@ -153,9 +195,13 @@ For a summarized version history, see the README.md.
 ## Version X.X.X — (TEMPLATE)
 
 **Date:**  
+
 **Version:** 
-**Change Type:** Installation / Configuration / Update / Maintenance / Security / Bug Fix  
+
+**Change Type:** Installation / Configuration / Update / Maintenance / Security / Bug Fix 
+
 **Status:** Completed / In Progress / Rolled Back
+
 
 ### Components Affected
 
