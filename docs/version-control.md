@@ -16,6 +16,47 @@ For a summarized version history, see the README.md.
 | X.Y.Z | Patch | Minor configuration adjustments, bug fixes, security patches, and routine maintenance. | Updating firewall rules, fixing DNS, updating packages |
 
 ---
+
+## Version 1.5.2 — Update Kuma
+
+**Date:** 2026-11-6
+
+**Version:** 1.5.2
+
+**Change Type:** Update
+
+**Status:** Completed
+
+
+### Components Affected
+
+| Component | Hostname | IP Address |
+|-----------|----------|------------|
+| Rbpi | raspberrypi | `192.168.137.120` |
+
+
+### Changes Made
+
+1. Configured Uptime kuma to monitor the following services:
+    - Proxmox-wazuh (192.168.137.8)
+    - Proxmox-DNS_Server (192.168.137.9)
+    - Web_App-Pihole (http://192.168.137.9/admin)
+    - Web_App-Proxmox (https://192.168.137.4:8006)
+    - Web_App-Wazuh (https://192.168.137.8)
+2. Set the following monitors to pause:
+    - HomeLab-GLPI
+    - HomeLab-Laptop
+    - HomeLab-NtoPng
+    - Proxmox-GLPI
+
+### Notes
+
+- Planning on repurposing the GLPI Vm
+- Also NtoPng is running on the wrong port, havn't had a need for it so I paused it.
+- Laptop now accesses the homelab network through tailscale, so monitoring it is no longer neccessary.
+
+---
+
 ## Version 1.5.1 — Configuring DNS Records
 
 **Date:** 2026-11-5
@@ -24,7 +65,7 @@ For a summarized version history, see the README.md.
 
 **Change Type:** Configuration
 
-**Status:** In Progress
+**Status:** Completed
 
 
 ### Components Affected
@@ -43,6 +84,7 @@ For a summarized version history, see the README.md.
 ### Notes
 
 - Next I want to set up a reverse proxy to handle the port numbers
+- Figured out why wazuh doesnt work, plot twist, it does, I just needed to use https://wazuh.homelab (I thought i could use :443)
 
 ---
 ## Version 1.5.0 — Wazuh and Pihole
